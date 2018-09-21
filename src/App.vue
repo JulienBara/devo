@@ -11,7 +11,7 @@
         </div>
         <div class="row cards-wrapper">
           <div class="col-lg-6 col-xs-10 col-xs-offset-1 col-lg-offset-0 left-pane">
-            <git-hub></git-hub>
+            <git-hub-e-shop-on-containers></git-hub-e-shop-on-containers>
           </div>
           <div class="col-lg-6 col-xs-10 col-xs-offset-1 col-lg-offset-0">
             <div class="row"
@@ -47,6 +47,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import GitHub from '@/components/GitHub/GitHub.vue';
+import GitHubEShopOnContainers from '@/components/GitHubEShopOnContainers/GitHubEShopOnContainers.vue';
 import Card from './components/Card.vue';
 import HackerNews from './components/HackerNews/HackerNews.vue';
 import ProductHunt from './components/ProductHunt/ProductHunt.vue';
@@ -58,6 +59,7 @@ export default {
     Card,
     HackerNews,
     GitHub,
+    GitHubEShopOnContainers,
     ProductHunt,
     ToggleSwitch,
   },

@@ -23,6 +23,10 @@ export default new Vuex.Store({
       updated_at: 0,
       data: [],
     },
+    githubeshoponcontainers: {
+      updated_at: 0,
+      data: [],
+    },
     updated_at_threshold: 5 * 60000,
   },
   mutations: {
@@ -37,6 +41,10 @@ export default new Vuex.Store({
     setProductHuntData(state, data) {
       state.producthunt.data = data;
       state.producthunt.updated_at = Date.now();
+    },
+    setGitHubEShopOnContainersData(state, data) {
+      state.githubeshoponcontainers.data = data;
+      state.githubeshoponcontainers.updated_at = Date.now();
     },
     setNightMode(state, isNightMode) {
       state.settings.is_night_mode = isNightMode;
@@ -76,6 +84,15 @@ export default new Vuex.Store({
       if (!lastUpdate || now - lastUpdate > threshold || forced) {
         const response = await axios.get(`${process.env.VUE_APP_API_BASE_URI}/producthunt`);
         context.commit('setProductHuntData', response.data.data);
+      }
+    },
+    async updateGitHubEShopOnContainers(context, forced = false) {
+      const threshold = context.state.updated_at_threshold;
+      const lastUpdate = context.state.githubeshoponcontainers.updated_at;
+      const now = new Date();
+      if (!lastUpdate || now - lastUpdate > threshold || forced) {
+        const response = await axios.get(`https://api.github.com/repos/dotnet-architecture/eShopOnContainers/issues/events`);
+        context.commit('setGitHubEShopOnContainersData', response.data);
       }
     },
   },
